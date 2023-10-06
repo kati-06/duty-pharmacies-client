@@ -53,7 +53,7 @@ function PharmacyCard({
           </a>
         </div>
         <div className="flex items-start  gap-2 mt-2">
-          <a>{distance && <b>{`Mesafe: ${distance.toFixed(2)} km`}</b>}</a>
+          <li>{distance && <b>{`Mesafe: ${distance.toFixed(2)} km`}</b>}</li>
         </div>
         <li>
           <button
