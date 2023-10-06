@@ -138,6 +138,7 @@ function Main() {
     }
   };
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   function getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
     var R = 6371; // Earth's radius in km
     var dLat = deg2rad(lat2 - lat1);
