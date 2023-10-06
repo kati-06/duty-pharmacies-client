@@ -1,34 +1,13 @@
 import {useState, useEffect} from 'react';
 import PharmacyCard from '../PharmacyCard/PharmacyCard';
 import './PharmacyTable.style.css';
-//import {fetchPharmacies} from '../../services/api';
-//import LoadingSpinner from '../LoadingSpinner';
 import MapSelectionModal from '../MapSelectionModal/MapSelectionModal';
 import {fetchPharmacy} from '../../services/api';
 
-function PharmacyTable({pharmacies, setPharmacies}) {
+function PharmacyTable({pharmacies}) {
   const [showModal, setShowModal] = useState(false);
   const [isMobile, setIsMobile] = useState('');
   const [pharmacyData, setPharmacyData] = useState({});
-
-  // IGNORE IT FOR NOW
-  //useEffect(() => {
-  //  const fetchData = async () => {
-  //    try {
-  //      const response = await fetchPharmacies({
-  //        city: 'ankara',
-  //        county: '',
-  //      });
-  //      setPharmacies(response);
-  //    } catch (error) {
-  //      console.log(error);
-  //    }
-  //  };
-
-  //  fetchData();
-  //}, [setPharmacies]);
-
-  //if (!pharmacies) return <LoadingSpinner />;
 
   useEffect(() => {
     if (

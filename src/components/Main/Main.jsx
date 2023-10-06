@@ -1,10 +1,11 @@
-import {useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import PharmacyTable from '../PharmacyTable/PharmacyTable';
 import data from '../../data/data.json';
 import {fetchPharmacies} from '../../services/api';
 import './Main.style.css';
 import PharmacyForm from '../PharmacyForm/PharmacyForm';
 import {useNavigate, useParams} from 'react-router-dom';
+import LoadingSpinner from '../LoadingSpinner';
 
 function Main() {
   const navigate = useNavigate();
@@ -14,9 +15,9 @@ function Main() {
   const [countyOptions, setCountyOptions] = useState([]);
   const [selectedCity, setSelectedCity] = useState(cityParam || '');
   const [selectedCounty, setSelectedCounty] = useState(countyParam || '');
-  const [isFetcing, setIsFetcing] = useState(false);
+  const [isFetching, setIsFetching] = useState(false);
+  const [userLocation, setUserLocation] = useState(null);
 
-  // get user location - IGNORE IT FOR NOW
   useEffect(() => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(success, error);
@@ -29,8 +30,6 @@ function Main() {
       const longitude = position.coords.longitude;
       console.log(`Latitude: ${latitude}, Longitude: ${longitude}`);
       setUserLocation({latitude, longitude});
-      // const url = `https://www.google.com/maps/search/?api=1&query=${latitude},${longitude}&query_place_id=${place_id}`;
-      // window.open(url, '_blank');
     }
 
     function error() {
@@ -41,6 +40,8 @@ function Main() {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        setIsFetching(true);
+
         const response = await fetchPharmacies({
           city: cityParam,
           county: countyParam,
@@ -48,6 +49,8 @@ function Main() {
         setPharmacies(response);
       } catch (error) {
         console.log(error);
+      } finally {
+        setIsFetching(false);
       }
     };
 
@@ -67,7 +70,23 @@ function Main() {
     }
   }, [cityParam, countyParam]);
 
-  // get cities from json and map for react-select component
+  useEffect(() => {
+    if (pharmacies && userLocation) {
+      const pharmaciesWithDistance = pharmacies
+        .map((pharmacy) => {
+          const distance = getDistanceFromLatLonInKm(
+            userLocation.latitude,
+            userLocation.longitude,
+            pharmacy.latitude,
+            pharmacy.longitude
+          );
+          return {...pharmacy, distance};
+        })
+        .sort((a, b) => a.distance - b.distance);
+      setUpdatedPharmacies(pharmaciesWithDistance);
+    }
+  }, [pharmacies, userLocation]);
+
   const cityOptions = data.map((city) => {
     return {value: city.citySlug, label: city.cityName};
   });
@@ -98,7 +117,7 @@ function Main() {
 
   const handleSubmitSearch = async () => {
     try {
-      setIsFetcing(true);
+      setIsFetching(true);
       const fetchedPharmacies = await fetchPharmacies({
         city: selectedCity?.toLowerCase(),
         county: selectedCounty?.toLowerCase(),
@@ -115,13 +134,13 @@ function Main() {
     } catch (error) {
       console.log(error);
     } finally {
-      setIsFetcing(false);
+      setIsFetching(false);
     }
   };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+
   function getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
-    var R = 6371; // Radius of the earth in km
-    var dLat = deg2rad(lat2 - lat1); // deg2rad below
+    var R = 6371; // Earth's radius in km
+    var dLat = deg2rad(lat2 - lat1);
     var dLon = deg2rad(lon2 - lon1);
     var a =
       Math.sin(dLat / 2) * Math.sin(dLat / 2) +
@@ -130,32 +149,13 @@ function Main() {
         Math.sin(dLon / 2) *
         Math.sin(dLon / 2);
     var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-    var d = R * c; // Distance in km
-    return d;
+    var distance = R * c; // Distance in km
+    return distance;
   }
 
   function deg2rad(deg) {
     return deg * (Math.PI / 180);
   }
-
-  const [userLocation, setUserLocation] = useState(null);
-
-  useEffect(() => {
-    if (pharmacies && userLocation) {
-      const pharmaciesWithDistance = pharmacies
-        .map((pharmacy) => {
-          const distance = getDistanceFromLatLonInKm(
-            userLocation.latitude,
-            userLocation.longitude,
-            pharmacy.latitude,
-            pharmacy.longitude
-          );
-          return {...pharmacy, distance};
-        })
-        .sort((a, b) => a.distance - b.distance);
-      setUpdatedPharmacies(pharmaciesWithDistance);
-    }
-  }, [pharmacies, userLocation, getDistanceFromLatLonInKm]);
 
   return (
     <div>
@@ -167,13 +167,13 @@ function Main() {
         selectedCity={selectedCity}
         selectedCounty={selectedCounty}
         handleSubmit={handleSubmitSearch}
-        disabled={isFetcing}
+        disabled={isFetching}
       />
-
-      <PharmacyTable
-        pharmacies={updatedPharmacies}
-        setPharmacies={setUpdatedPharmacies}
-      />
+      {isFetching ? (
+        <LoadingSpinner />
+      ) : (
+        <PharmacyTable pharmacies={updatedPharmacies} />
+      )}
     </div>
   );
 }
