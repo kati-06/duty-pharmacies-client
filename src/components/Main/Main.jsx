@@ -118,6 +118,7 @@ function Main() {
       setIsFetcing(false);
     }
   };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   function getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
     var R = 6371; // Radius of the earth in km
     var dLat = deg2rad(lat2 - lat1); // deg2rad below
@@ -154,7 +155,7 @@ function Main() {
         .sort((a, b) => a.distance - b.distance);
       setUpdatedPharmacies(pharmaciesWithDistance);
     }
-  }, [pharmacies, userLocation]);
+  }, [pharmacies, userLocation, getDistanceFromLatLonInKm]);
 
   return (
     <div>

@@ -1,4 +1,3 @@
-import {useEffect, useState} from 'react';
 import './PharmacyCard.style.css';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {
@@ -16,7 +15,6 @@ function PharmacyCard({
   phone1,
   pharmacyId,
   distance,
-  setShowModal,
   handleClickShowOnMap,
 }) {
   return (
@@ -55,9 +53,7 @@ function PharmacyCard({
           </a>
         </div>
         <div className="flex items-start  gap-2 mt-2">
-        <a>{distance && (
-            <b>{`Mesafe: ${distance.toFixed(2)} km`}</b>
-          )}</a>
+          <a>{distance && <b>{`Mesafe: ${distance.toFixed(2)} km`}</b>}</a>
         </div>
         <li>
           <button

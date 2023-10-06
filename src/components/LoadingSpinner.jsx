@@ -1,5 +1,3 @@
-import React, {useEffect} from 'react';
-
 function LoadingSpinner() {
   return (
     <div className="flex justify-center items-center">
