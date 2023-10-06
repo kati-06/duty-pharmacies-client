@@ -85,7 +85,7 @@ function Main() {
         .sort((a, b) => a.distance - b.distance);
       setUpdatedPharmacies(pharmaciesWithDistance);
     }
-  }, [pharmacies, userLocation]);
+  }, [pharmacies, userLocation, getDistanceFromLatLonInKm]);
 
   const cityOptions = data.map((city) => {
     return {value: city.citySlug, label: city.cityName};
