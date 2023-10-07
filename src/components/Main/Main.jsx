@@ -85,7 +85,8 @@ function Main() {
         .sort((a, b) => a.distance - b.distance);
       setUpdatedPharmacies(pharmaciesWithDistance);
     }
-  }, [pharmacies, userLocation, getDistanceFromLatLonInKm]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [pharmacies, userLocation]);
 
   const cityOptions = data.map((city) => {
     return {value: city.citySlug, label: city.cityName};
@@ -118,11 +119,6 @@ function Main() {
   const handleSubmitSearch = async () => {
     try {
       setIsFetching(true);
-      const fetchedPharmacies = await fetchPharmacies({
-        city: selectedCity?.toLowerCase(),
-        county: selectedCounty?.toLowerCase(),
-      });
-      setPharmacies(fetchedPharmacies);
 
       if (selectedCity && selectedCounty) {
         navigate(
