@@ -59,7 +59,8 @@ function PharmacyTable({pharmacies}) {
         );
         uri = `comgooglemaps://?q=${encodedQuery}`;
       } else {
-        uri = `comgooglemaps://?q=${pharmacyData.data.lat},${pharmacyData.data.lng}`;
+        console.log(pharmacyData.data.lat);
+        uri = `comgooglemaps://?q=${pharmacyData.data.latitude},${pharmacyData.data.longitude}`;
       }
     } else if (type === 'apple') {
       if (pharmacyData.isFound) {
