@@ -7,6 +7,26 @@ import PharmacyForm from '../PharmacyForm/PharmacyForm';
 import {useNavigate, useParams} from 'react-router-dom';
 import LoadingSpinner from '../LoadingSpinner';
 
+// eslint-disable-next-line react-hooks/exhaustive-deps
+function getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
+  var R = 6371; // Earth's radius in km
+  var dLat = deg2rad(lat2 - lat1);
+  var dLon = deg2rad(lon2 - lon1);
+  var a =
+    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+    Math.cos(deg2rad(lat1)) *
+      Math.cos(deg2rad(lat2)) *
+      Math.sin(dLon / 2) *
+      Math.sin(dLon / 2);
+  var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+  var distance = R * c; // Distance in km
+  return distance;
+}
+
+function deg2rad(deg) {
+  return deg * (Math.PI / 180);
+}
+
 function Main() {
   const navigate = useNavigate();
   const {city: cityParam, county: countyParam} = useParams();
@@ -133,26 +153,6 @@ function Main() {
       setIsFetching(false);
     }
   };
-
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  function getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
-    var R = 6371; // Earth's radius in km
-    var dLat = deg2rad(lat2 - lat1);
-    var dLon = deg2rad(lon2 - lon1);
-    var a =
-      Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-      Math.cos(deg2rad(lat1)) *
-        Math.cos(deg2rad(lat2)) *
-        Math.sin(dLon / 2) *
-        Math.sin(dLon / 2);
-    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-    var distance = R * c; // Distance in km
-    return distance;
-  }
-
-  function deg2rad(deg) {
-    return deg * (Math.PI / 180);
-  }
 
   return (
     <div>

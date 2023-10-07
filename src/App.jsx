@@ -13,9 +13,7 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Main />} />
-
             <Route path="/:city" element={<Main />} />
-
             <Route path="/:city/:county" element={<Main />} />
             <Route path="*" element={<h1>404</h1>} />
           </Routes>
