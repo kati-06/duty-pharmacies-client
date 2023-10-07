@@ -45,10 +45,12 @@ function PharmacyForm({
             styles={{
               menu: (provided) => ({
                 ...provided,
-                width: 'auto',
+                //width: 'auto',
               }),
               option: (provided) => ({
                 ...provided,
+                overflow: 'hidden',
+                textOverflow: 'ellipsis',
                 whiteSpace: 'nowrap',
               }),
             }}
@@ -65,12 +67,14 @@ function PharmacyForm({
               (option) => option.value === selectedCounty
             )}
             styles={{
-              menu: (provided) => ({
-                ...provided,
-                width: 'auto',
-              }),
+              //menu: (provided) => ({
+              //  ...provided,
+              //  width: 'auto',
+              //}),
               option: (provided) => ({
                 ...provided,
+                overflow: 'hidden',
+                textOverflow: 'ellipsis',
                 whiteSpace: 'nowrap',
               }),
               placeholder: (provided) => ({
