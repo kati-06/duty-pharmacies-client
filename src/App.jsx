@@ -1,5 +1,5 @@
 import React from 'react';
-import {BrowserRouter, Routes, Route} from 'react-router-dom';
+import {BrowserRouter, Routes, Route, Link} from 'react-router-dom';
 
 // components
 import Navbar from './components/Navbar';
@@ -15,7 +15,17 @@ function App() {
             <Route path="/" element={<Main />} />
             <Route path="/:city" element={<Main />} />
             <Route path="/:city/:county" element={<Main />} />
-            <Route path="*" element={<h1>404</h1>} />
+            <Route
+              path="404"
+              element={
+                <div className="font-bold">
+                  <h1>Sayfa bulunamadı 404</h1>
+                  <Link className="text-blue underline" to="/">
+                    Ana sayfaya git
+                  </Link>
+                </div>
+              }
+            />
           </Routes>
         </BrowserRouter>
       </main>

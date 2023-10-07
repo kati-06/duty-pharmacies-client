@@ -77,9 +77,9 @@ function Main() {
     if (cityParam) {
       setSelectedCity(cityParam);
       setSelectedCounty(countyParam);
-      const counties = data.find((d) => d.citySlug === cityParam).counties;
+      const counties = data.find((d) => d.citySlug === cityParam)?.counties;
       setCountyOptions(
-        counties.map((county) => {
+        counties?.map((county) => {
           return {
             value: county.countySlug,
             label: county.countyName,
@@ -91,9 +91,11 @@ function Main() {
   }, [cityParam, countyParam]);
 
   useEffect(() => {
-    if (pharmacies && userLocation) {
+    if (!pharmacies) return;
+
+    if (userLocation && pharmacies.length > 0) {
       const pharmaciesWithDistance = pharmacies
-        .map((pharmacy) => {
+        ?.map((pharmacy) => {
           const distance = getDistanceFromLatLonInKm(
             userLocation.latitude,
             userLocation.longitude,
@@ -104,6 +106,8 @@ function Main() {
         })
         .sort((a, b) => a.distance - b.distance);
       setUpdatedPharmacies(pharmaciesWithDistance);
+    } else {
+      setUpdatedPharmacies(pharmacies);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pharmacies, userLocation]);

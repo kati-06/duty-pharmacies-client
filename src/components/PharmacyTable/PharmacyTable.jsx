@@ -110,20 +110,22 @@ function PharmacyTable({pharmacies}) {
           setShowModal={setShowModal}
         />
       )}
-      {pharmacies?.map((pharmacy) => (
-        <PharmacyCard
-          key={pharmacy._id}
-          pharmacyName={pharmacy.pharmacyName}
-          city={pharmacy.city}
-          county={pharmacy.county}
-          address={pharmacy.address}
-          phone1={pharmacy.phone}
-          pharmacyId={pharmacy._id}
-          distance={pharmacy.distance}
-          setShowModal={setShowModal}
-          handleClickShowOnMap={handleClickShowOnMap}
-        />
-      ))}
+
+      {pharmacies.length > 0 &&
+        pharmacies?.map((pharmacy) => (
+          <PharmacyCard
+            key={pharmacy._id}
+            pharmacyName={pharmacy.pharmacyName}
+            city={pharmacy.city}
+            county={pharmacy.county}
+            address={pharmacy.address}
+            phone1={pharmacy.phone}
+            pharmacyId={pharmacy._id}
+            distance={pharmacy.distance}
+            setShowModal={setShowModal}
+            handleClickShowOnMap={handleClickShowOnMap}
+          />
+        ))}
       <div>
         <script
           async
