@@ -179,7 +179,24 @@ function Main() {
       )}
 
       <div>
-        {pharmacies ? <CityText selectedCity={selectedCity} selectedCounty={selectedCounty} cityOptions={cityOptions} countyOptions={countyOptions} /> : <HomeText/>}
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3435885379042213"
+          crossorigin="anonymous"
+        ></script>
+      </div>
+
+      <div>
+        {pharmacies ? (
+          <CityText
+            selectedCity={selectedCity}
+            selectedCounty={selectedCounty}
+            cityOptions={cityOptions}
+            countyOptions={countyOptions}
+          />
+        ) : (
+          <HomeText />
+        )}
       </div>
     </div>
   );

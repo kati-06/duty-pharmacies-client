@@ -113,25 +113,37 @@ function PharmacyTable({pharmacies}) {
       )}
 
       {pharmacies.length > 0 &&
-        pharmacies?.map((pharmacy) => (
-          <PharmacyCard
-            key={pharmacy._id}
-            pharmacyName={pharmacy.pharmacyName}
-            city={pharmacy.city}
-            county={pharmacy.county}
-            address={pharmacy.address}
-            phone1={pharmacy.phone}
-            pharmacyId={pharmacy._id}
-            distance={pharmacy.distance}
-            setShowModal={setShowModal}
-            handleClickShowOnMap={handleClickShowOnMap}
-          />
+        pharmacies?.map((pharmacy, i) => (
+          <div>
+            {i % 4 === 3 && (
+              <div className="google-ads h-[200px] bg-red">
+                <script
+                  async
+                  src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3435885379042213"
+                  crossorigin="anonymous"
+                ></script>
+              </div>
+            )}
+
+            <PharmacyCard
+              key={pharmacy._id}
+              pharmacyName={pharmacy.pharmacyName}
+              city={pharmacy.city}
+              county={pharmacy.county}
+              address={pharmacy.address}
+              phone1={pharmacy.phone}
+              pharmacyId={pharmacy._id}
+              distance={pharmacy.distance}
+              setShowModal={setShowModal}
+              handleClickShowOnMap={handleClickShowOnMap}
+            />
+          </div>
         ))}
       <div>
         <script
           async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4034067416053884"
-          crossOrigin="anonymous"
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3435885379042213"
+          crossorigin="anonymous"
         ></script>
       </div>
     </div>

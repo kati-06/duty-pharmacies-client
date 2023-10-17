@@ -19,13 +19,13 @@ function MapSelectionModal({handleSelectMap, setShowModal}) {
         Apple Maps
       </button>
 
-      <div>
+      {/*<div>
         <script
           async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4034067416053884"
-          crossOrigin="anonymous"
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3435885379042213"
+          crossorigin="anonymous"
         ></script>
-      </div>
+      </div>*/}
 
       {/*<button onClick={() => handleSelectMap('yandex')} className="button">
         Yandex Maps
