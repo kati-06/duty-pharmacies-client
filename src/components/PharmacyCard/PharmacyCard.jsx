@@ -25,7 +25,7 @@ function PharmacyCard({
           size="xl"
           icon={faHouseMedical}
         />
-        <h1 className="text-xl font-bold w-fulloverflow-hidden whitespace-nowrap text-ellipsis">
+        <h1 className="text-xl font-bold w-full overflow-hidden whitespace-nowrap text-ellipsis">
           {pharmacyName}
         </h1>
       </div>
