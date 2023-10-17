@@ -86,7 +86,7 @@ function PharmacyTable({pharmacies}) {
         </h1>
         <p>
           <strong>Türkiye genelinde 7/24</strong> nöbetçi eczanelerin telefonuna
-          ve adresine kolayca ulaşabilirsiniz.
+          ve konumuna kolayca ulaşabilirsiniz.
         </p>
         <p>
           <strong>Telefon numaralarına</strong> tıklayarak eczaneleri

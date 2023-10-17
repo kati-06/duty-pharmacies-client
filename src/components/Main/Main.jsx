@@ -6,6 +6,8 @@ import './Main.style.css';
 import PharmacyForm from '../PharmacyForm/PharmacyForm';
 import {useNavigate, useParams} from 'react-router-dom';
 import LoadingSpinner from '../LoadingSpinner';
+import HomeText from '../../texts/HomeText';
+import CityText from '../../texts/CityText';
 
 // eslint-disable-next-line react-hooks/exhaustive-deps
 function getDistanceFromLatLonInKm(lat1, lon1, lat2, lon2) {
@@ -175,6 +177,10 @@ function Main() {
       ) : (
         <PharmacyTable pharmacies={updatedPharmacies} />
       )}
+
+      <div>
+        {pharmacies ? <CityText selectedCity={selectedCity} selectedCounty={selectedCounty} cityOptions={cityOptions} countyOptions={countyOptions} /> : <HomeText/>}
+      </div>
     </div>
   );
 }
