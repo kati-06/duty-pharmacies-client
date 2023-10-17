@@ -116,7 +116,7 @@ function PharmacyTable({pharmacies}) {
         pharmacies?.map((pharmacy, i) => (
           <div>
             {i % 4 === 3 && (
-              <div className="google-ads h-[200px] bg-red">
+              <div className="google-ads">
                 <script
                   async
                   src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3435885379042213"
