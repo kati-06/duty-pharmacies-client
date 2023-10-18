@@ -13,7 +13,17 @@ function CityText({selectedCity, selectedCounty, cityOptions, countyOptions}) {
 
     return (
         <div className="p-4">
-            {console.log(city)}
+            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3435885379042213"
+                 crossorigin="anonymous"></script>
+            <ins class="adsbygoogle"
+                 style="display:block; text-align:center;"
+                 data-ad-layout="in-article"
+                 data-ad-format="fluid"
+                 data-ad-client="ca-pub-3435885379042213"
+                 data-ad-slot="1019306344"></ins>
+            <script>
+                 (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
             <h2 className="font-bold text-2xl mb-3">{city?.label} {county?.label} Nöbetçi Eczane Nerede?</h2>
             <p className="mb-5">{city?.label} {county?.label} ilçesindeki nöbetçi eczanelerin konumlarına ve iletişim bilgilerine ulaşmak için çevrimiçi sorgulama hizmeti kullanabilirsiniz. Nöbetçi eczanelerin güncel listesine ulaşarak ihtiyacınız olan ilaçları temin edebilirsiniz.</p>
 
@@ -36,6 +46,18 @@ function CityText({selectedCity, selectedCounty, cityOptions, countyOptions}) {
             <ul>
                 {countyOptions?.map((c,i) => <li key={i}><strong>{c?.label}</strong> nöbetçi eczaneleri</li>)}
             </ul>
+
+              <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3435885379042213"
+                 crossorigin="anonymous"></script>
+                <ins class="adsbygoogle"
+                     style="display:block; text-align:center;"
+                     data-ad-layout="in-article"
+                     data-ad-format="fluid"
+                     data-ad-client="ca-pub-3435885379042213"
+                     data-ad-slot="1019306344"></ins>
+                <script>
+                     (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
         </div>
 
     )
