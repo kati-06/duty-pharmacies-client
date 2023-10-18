@@ -117,11 +117,17 @@ function PharmacyTable({pharmacies}) {
           <div>
             {i % 4 === 3 && (
               <div className="google-ads">
-                <script
-                  async
-                  src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3435885379042213"
-                  crossorigin="anonymous"
-                ></script>
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3435885379042213"
+                     crossorigin="anonymous"></script>
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-format="fluid"
+                     data-ad-layout-key="-6t+ed+2i-1n-4w"
+                     data-ad-client="ca-pub-3435885379042213"
+                     data-ad-slot="6343769300"></ins>
+                <script>
+                     (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
               </div>
             )}
 
